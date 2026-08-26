@@ -72,6 +72,16 @@ export default function OpengraphImage() {
           I build digital products, web applications &amp; AI systems that solve
           real problems.
         </div>
+        <div
+          style={{
+            marginTop: "auto",
+            fontSize: 22,
+            color: "#555",
+            letterSpacing: 1,
+          }}
+        >
+          {siteConfig.githubUrl.replace("https://", "")}
+        </div>
       </div>
     ),
     { ...size }

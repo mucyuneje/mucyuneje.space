@@ -39,7 +39,6 @@ export function buildJsonLd({ navItems }: BuildJsonLdArgs) {
         },
         sameAs: [
           siteConfig.githubUrl,
-          siteConfig.linkedinUrl,
           siteConfig.instagramUrl,
         ],
         knowsAbout: seoKeywords,

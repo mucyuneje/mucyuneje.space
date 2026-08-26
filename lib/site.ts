@@ -24,7 +24,7 @@ export const siteConfig = {
   linkedinUrl: "https://www.linkedin.com/in/mucyuneje",
   email: "hello@mucyuneje.space",
   /** WhatsApp + Instagram — secondary channels, shown in the contact
-   *  section only (the hero keeps GitHub / LinkedIn / Email) */
+   *  section only (the hero keeps GitHub / Instagram / Email) */
   whatsappUrl: "https://wa.me/250784222615",
   instagramUrl: "https://instagram.com/mucyuneje",
 };
@@ -106,41 +106,76 @@ export type Project = {
 /** The Selected Work section renders the first three as a curated preview. */
 export const projects: Project[] = [
   {
-    title: "Echelon",
-    // TODO: add metric here (e.g. screening time saved per hire)
+    title: "Echelon: AI-Powered Talent Screening",
     description:
-      "Screening high volumes of applications by hand is slow and inconsistent — Echelon structures hiring with Gemini-powered AI résumé processing and candidate evaluation, so shortlists come together faster and against one consistent bar.",
-    image: "/images/Echlon-Work1.png",
-    tech: ["AI", "Python", "Web Development"],
+      "Production-ready recruiter platform using Google Gemini AI to screen, score, and shortlist job applicants from structured talent profiles and uploaded resumes. Built for the Umurava AI Hackathon.",
+    image: "/images/project-echelon.svg",
+    tech: ["Next.js", "TypeScript", "Node.js", "MongoDB", "AI", "Tailwind CSS"],
     demoUrl: "https://echelon-theta.vercel.app/",
-    // TODO: add 2-3 real screenshots (or a short GIF) in /public/images
-    // and list their paths here to activate the gallery strip.
   },
   {
-    title: "School Asset Management",
+    title: "Mubiligi TSS: School Portal",
     description:
-      "A digital system for managing organizational assets, employees, assignments and asset history.",
-    image: "/images/RebaBus-Work2.png",
-    tech: ["Next.js", "Node.js", "MySQL"],
-    // TODO: add repo/demo URL when available
+      "Full-stack web app for a Catholic Technical Secondary School — public website, online student application portal with MTN MoMo / Airtel Money payments, CMS, and a comprehensive admin dashboard.",
+    image: "/images/project-mubiligi.svg",
+    tech: ["React", "Express", "MongoDB", "Redis", "Docker", "Tailwind CSS"],
   },
   {
-    title: "RebaBus",
-    // TODO: add metric here (e.g. vehicles tracked, requests handled)
+    title: "UBWAMI TechHouse: Enterprise SaaS",
     description:
-      "Riders and operators have no live view of bus movement — RebaBus streams vehicle positions over WebSockets from a Node.js tracking backend, making end-to-end network monitoring possible in real time.",
-    image: "/images/work-3.svg",
-    tech: ["React", "Node.js", "Real-time Systems"],
-    // TODO: add repo/demo URL when available
-    // TODO: add 2-3 real screenshots (or a short GIF) in /public/images
+      "Enterprise web application for a tech company — public marketing site with blog, admin dashboard with Kanban project management, lead pipeline, support tickets, and real-time notifications via SSE.",
+    image: "/images/project-ubwami.svg",
+    tech: ["React", "Express", "MongoDB", "Zustand", "SSE", "Tailwind CSS"],
   },
   {
-    title: "AgriMarketAI",
+    title: "RebaBus: Real-Time Bus Tracking",
     description:
-      "An AI-powered agricultural technology project focused on using intelligent systems to solve real-world farming challenges.",
-    image: "/images/work-1.svg",
-    tech: ["Python", "AI", "Machine Learning"],
-    // TODO: add repo/demo URL when available
+      "Map-first real-time bus tracking system for Kigali — fullscreen interactive map with live bus markers, ETA predictions, route filtering, and mobile-friendly sliding panels.",
+    image: "/images/project-rebabus.svg",
+    tech: ["React", "Leaflet", "Real-time Systems", "Tailwind CSS"],
+  },
+  {
+    title: "NEXORA: Gesture Control System",
+    description:
+      "Computer vision system using hand gestures and face tracking to control the mouse cursor, scroll, zoom, and click entirely through the webcam, with a Flask web streaming interface.",
+    image: "/images/project-nexora.svg",
+    tech: ["Python", "OpenCV", "MediaPipe", "Flask"],
+  },
+  {
+    title: "Interview Hider: AI Interview Assistant",
+    description:
+      "Desktop app that captures system audio during interviews, transcribes it in real-time with local Whisper, and generates AI answers via Groq API. The window is invisible to screenshots and screen recordings.",
+    image: "/images/project-interview.svg",
+    tech: ["Python", "AI", "Groq API"],
+  },
+  {
+    title: "mucyuneje.space: Portfolio Website",
+    description:
+      "Modern personal portfolio built with Next.js — server-side rendered, animated, responsive, with project showcase and optimized performance.",
+    image: "/images/project-portfolio.svg",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    demoUrl: "https://mucyuneje.space",
+  },
+  {
+    title: "Mukedealz: E-Commerce Platform",
+    description:
+      "Full-stack e-commerce web application with product listings, shopping cart, and a modern UI with TypeScript type safety.",
+    image: "/images/project-mukedealz.svg",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+  },
+  {
+    title: "Umurenge IT Inventory System",
+    description:
+      "Centralized web app for managing IT equipment, stock levels, and asset distribution across departments — improving efficiency, transparency and accountability.",
+    image: "/images/project-inventory.svg",
+    tech: ["React", "Node.js", "Express", "MongoDB"],
+  },
+  {
+    title: "Alaniiautos: Auto Dealership Platform",
+    description:
+      "Next.js web application for an automobile dealership featuring vehicle listings and a modern responsive interface.",
+    image: "/images/project-alanii.svg",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
   },
 ];
 
@@ -257,7 +292,6 @@ export const finalCta = {
 
 export const socials = [
   { label: "GitHub", href: siteConfig.githubUrl },
-  // No URLs provided — filtered out of the footer until real profiles exist.
-  { label: "LinkedIn", href: "#" },
-  { label: "X", href: "#" },
+  { label: "Instagram", href: "https://instagram.com/mucyuneje" },
+  { label: "Email", href: `mailto:${siteConfig.email}` },
 ].filter((social) => social.href !== "#");

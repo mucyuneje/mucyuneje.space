@@ -69,7 +69,7 @@ export default function HomePage() {
           headlineShort={heroContent.headlineShort}
           email={siteConfig.email}
           githubUrl={siteConfig.githubUrl}
-          linkedinUrl={siteConfig.linkedinUrl}
+          instagramUrl={siteConfig.instagramUrl}
         />
       </section>
 

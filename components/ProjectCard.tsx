@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 
 import { ProjectGallery } from "@/components/ProjectGallery";
+import { siteConfig } from "@/lib/site";
 import type { Project } from "@/lib/site";
 import { getTechIcon } from "@/lib/tech-icons";
 
@@ -105,10 +106,16 @@ export function ProjectCard({
               )}
             </div>
           ) : (
-            /* No public URL yet — say so instead of linking to GitHub root */
-            <span className="shrink-0 whitespace-nowrap text-sm text-muted/70">
-              Links coming soon
-            </span>
+            /* No public URL yet — link to GitHub profile */
+            <a
+              href={siteConfig.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-0.5 whitespace-nowrap text-sm font-medium text-muted transition-colors duration-200 hover:text-primary"
+            >
+              Visit GitHub
+              <ArrowUpRight aria-hidden="true" className="size-3.5" />
+            </a>
           )}
         </div>
       </div>

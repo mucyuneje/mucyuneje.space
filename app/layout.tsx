@@ -85,7 +85,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
     >
-      <body className="min-h-dvh bg-bg font-sans text-primary">
+      <body suppressHydrationWarning className="min-h-dvh bg-bg font-sans text-primary">
         {/* Structured data: Person + WebSite + SiteNavigationElement graph.
             Explicit identity + nav hierarchy is what gives Google the
             signals it uses to generate Sitelinks. */}

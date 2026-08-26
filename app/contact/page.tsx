@@ -128,16 +128,16 @@ export default function ContactPage() {
               </div>
               <div className="flex items-start gap-3">
                 <dt className="text-xs font-semibold uppercase tracking-wider text-muted w-20 shrink-0">
-                  LinkedIn
+                  Instagram
                 </dt>
                 <dd>
                   <a
-                    href={siteConfig.linkedinUrl}
+                    href={siteConfig.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-primary/80 transition-colors hover:text-accent"
                   >
-                    {siteConfig.linkedinUrl.replace("https://", "")}
+                    {siteConfig.instagramUrl.replace("https://", "")}
                   </a>
                 </dd>
               </div>

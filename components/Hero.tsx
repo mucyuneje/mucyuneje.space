@@ -1,6 +1,5 @@
 import { Mail } from "lucide-react";
-import { SiGithub } from "react-icons/si";
-import { FaLinkedin } from "react-icons/fa6";
+import { SiGithub, SiInstagram } from "react-icons/si";
 
 import { FadeUp } from "@/components/FadeUp";
 import { PillButton } from "@/components/PillButton";
@@ -18,15 +17,13 @@ type HeroProps = {
   email: string;
   /** Top professional channels — icon pills under the CTAs */
   githubUrl: string;
-  linkedinUrl: string;
+  instagramUrl: string;
 };
 
 /**
  * Hero: availability pill -> role kicker -> full-width headline ->
  * primary CTA pair ("Get in Touch" / "View Work") -> subtle pills for the
- * top three channels (GitHub, LinkedIn, Email). WhatsApp and Instagram
- * live in the contact section instead. No imagery; the sidebar carries
- * identity on large screens, the fixed header on smaller ones.
+ * top three channels (GitHub, Instagram, Email).
  * Server component; only the FadeUp wrappers are client-side.
  */
 export function Hero({
@@ -36,14 +33,14 @@ export function Hero({
   headlineShort,
   email,
   githubUrl,
-  linkedinUrl,
+  instagramUrl,
 }: HeroProps) {
   /* Subtle background pills — quiet by default, lift on hover */
   const socialLinkClass =
     "inline-flex items-center gap-2 rounded-full bg-card px-3.5 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:text-primary";
   const socials = [
     { label: "GitHub", href: githubUrl, Icon: SiGithub },
-    { label: "LinkedIn", href: linkedinUrl, Icon: FaLinkedin },
+    { label: "Instagram", href: instagramUrl, Icon: SiInstagram },
     {
       label: "Email",
       href: email ? `mailto:${email}` : "",
