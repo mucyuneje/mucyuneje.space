@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { PillButton } from "@/components/PillButton";
 import { SectionHeading } from "@/components/SectionHeading";
 import { buildBreadcrumbJsonLd } from "@/lib/json-ld";
-import { siteConfig } from "@/lib/site";
+import { contactEmailHref, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -29,7 +29,7 @@ export default function ContactPage() {
     <>
       {breadcrumb && <JsonLd data={breadcrumb} />}
       <Breadcrumbs />
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-16 md:px-12 md:py-24 lg:pr-20">
         <FadeUp>
           <SectionHeading large>Get in Touch</SectionHeading>
         </FadeUp>
@@ -46,16 +46,16 @@ export default function ContactPage() {
               software? I&apos;m available for freelance work, collaborations
               and consulting.
             </p>
-            <PillButton
-              variant="primary"
-              href={`mailto:${siteConfig.email}`}
-              className="mt-10"
-            >
+            <PillButton variant="primary" href={contactEmailHref} className="mt-10">
               Send an Email ↗
             </PillButton>
             <p className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-muted">
               <MapPin aria-hidden="true" className="size-3.5" />
               Rwanda · Available for remote work
+            </p>
+            <p className="mt-3 text-xs text-muted">
+              Email opens in your mail app with the subject filled in — I
+              reply within a day or two.
             </p>
           </div>
         </FadeUp>
@@ -82,7 +82,7 @@ export default function ContactPage() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-card-border bg-card px-3.5 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:text-primary"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-card-border bg-card px-3.5 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:text-primary"
                 >
                   <Icon aria-hidden="true" className="size-4" />
                   {label}
@@ -99,20 +99,20 @@ export default function ContactPage() {
             </h3>
             <dl className="mt-6 space-y-4">
               <div className="flex items-start gap-3">
-                <dt className="text-xs font-semibold uppercase tracking-wider text-muted w-20 shrink-0">
+                <dt className="w-20 shrink-0 pt-2 text-xs font-semibold uppercase tracking-wider text-muted">
                   Email
                 </dt>
                 <dd>
                   <a
-                    href={`mailto:${siteConfig.email}`}
-                    className="text-sm text-primary/80 transition-colors hover:text-accent"
+                    href={contactEmailHref}
+                    className="inline-flex min-h-[44px] items-center text-sm text-primary/80 transition-colors hover:text-accent"
                   >
                     {siteConfig.email}
                   </a>
                 </dd>
               </div>
               <div className="flex items-start gap-3">
-                <dt className="text-xs font-semibold uppercase tracking-wider text-muted w-20 shrink-0">
+                <dt className="w-20 shrink-0 pt-2 text-xs font-semibold uppercase tracking-wider text-muted">
                   GitHub
                 </dt>
                 <dd>
@@ -120,14 +120,14 @@ export default function ContactPage() {
                     href={siteConfig.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-primary/80 transition-colors hover:text-accent"
+                    className="inline-flex min-h-[44px] items-center text-sm text-primary/80 transition-colors hover:text-accent"
                   >
                     {siteConfig.githubUrl.replace("https://", "")}
                   </a>
                 </dd>
               </div>
               <div className="flex items-start gap-3">
-                <dt className="text-xs font-semibold uppercase tracking-wider text-muted w-20 shrink-0">
+                <dt className="w-20 shrink-0 pt-2 text-xs font-semibold uppercase tracking-wider text-muted">
                   Instagram
                 </dt>
                 <dd>
@@ -135,7 +135,7 @@ export default function ContactPage() {
                     href={siteConfig.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-primary/80 transition-colors hover:text-accent"
+                    className="inline-flex min-h-[44px] items-center text-sm text-primary/80 transition-colors hover:text-accent"
                   >
                     {siteConfig.instagramUrl.replace("https://", "")}
                   </a>

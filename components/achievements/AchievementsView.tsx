@@ -42,7 +42,7 @@ export function AchievementsView({ highlights, all }: AchievementsViewProps) {
               type="button"
               onClick={() => setView(value)}
               aria-pressed={active}
-              className={`rounded-pill px-4 py-2 text-xs font-semibold transition-colors duration-200 ${
+              className={`inline-flex min-h-[44px] items-center rounded-pill px-4 py-2 text-xs font-semibold transition-colors duration-200 ${
                 active
                   ? "bg-accent text-black"
                   : "text-muted hover:text-primary"

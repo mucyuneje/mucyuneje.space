@@ -12,8 +12,8 @@ type AvatarProps = {
 };
 
 /**
- * Circular black-and-white profile photo — plain per the reference:
- * no border, ring or glow; sits directly on the page background.
+ * Circular profile photo — plain per the reference:
+ * no border, ring, glow or filter; sits directly on the page background.
  */
 export function Avatar({
   src,
@@ -30,7 +30,7 @@ export function Avatar({
         fill
         sizes={`${size}px`}
         priority={priority}
-        className="rounded-full object-cover grayscale"
+        className="rounded-full object-cover"
       />
     </span>
   );

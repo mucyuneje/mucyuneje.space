@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import type { NavItem } from "@/lib/site";
@@ -12,13 +12,16 @@ type MobileNavProps = {
 };
 
 /**
- * Mobile navigation: hamburger button (below the `md` breakpoint) that opens
- * a full-screen slide-in drawer with the same nav items and larger (48px+)
- * touch targets. Closes on link click, Escape key, or backdrop tap.
+ * Mobile navigation: hamburger button (below the `lg` breakpoint) that opens
+ * a full-screen slide-in drawer with the same nav items and 44px+ touch
+ * targets. Closes on link click, Escape key, or backdrop tap. Focus moves
+ * into the drawer while it is open and returns to the trigger on close.
  */
 export function MobileNav({ items }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const reduceMotion = useReducedMotion();
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -26,6 +29,7 @@ export function MobileNav({ items }: MobileNavProps) {
   useEffect(() => {
     if (!open) return;
     document.body.style.overflow = "hidden";
+    closeBtnRef.current?.focus();
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") close();
     };
@@ -39,17 +43,20 @@ export function MobileNav({ items }: MobileNavProps) {
   return (
     <div className="lg:hidden">
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setOpen(true)}
         aria-expanded={open}
         aria-controls="mobile-drawer"
         aria-label="Open navigation menu"
-        className="flex size-10 items-center justify-center rounded-full text-primary transition-colors hover:text-accent"
+        className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full text-primary transition-colors hover:text-accent"
       >
         <Menu className="size-6" aria-hidden="true" />
       </button>
 
-      <AnimatePresence>
+      <AnimatePresence
+        onExitComplete={() => triggerRef.current?.focus()}
+      >
         {open && (
           <motion.div
             id="mobile-drawer"
@@ -63,25 +70,26 @@ export function MobileNav({ items }: MobileNavProps) {
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             {/* Drawer header mirrors the fixed page header: name left, close right */}
-            <div className="flex items-center justify-between px-6 py-5">
+            <div className="flex items-center justify-between px-6 py-4">
               <span className="font-heading text-[0.9375rem] font-bold tracking-tight text-primary">
                 {heroContent.identity}
               </span>
               <button
+                ref={closeBtnRef}
                 type="button"
                 onClick={close}
                 aria-label="Close navigation menu"
-                className="flex size-10 items-center justify-center rounded-full text-primary transition-colors hover:text-accent"
+                className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full text-primary transition-colors hover:text-accent"
               >
                 <X className="size-6" aria-hidden="true" />
               </button>
             </div>
 
-            <nav aria-label="Mobile" className="px-8 pt-[12vh]">
-              {/* Scroll-spy driven; min-h-12 = 48px minimum touch target */}
+            <nav aria-label="Mobile" className="px-8 pt-[8vh]">
+              {/* min-h-12 = 48px minimum touch target */}
               <NavLinks
                 items={items}
-                ulClassName="flex flex-col gap-2"
+                ulClassName="flex flex-col gap-1"
                 liClassName="flex min-h-12 items-center"
                 onNavigate={close}
               />

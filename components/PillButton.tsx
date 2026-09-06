@@ -9,7 +9,7 @@ type PillButtonProps = {
 };
 
 const baseStyles =
-  "inline-flex items-center justify-center rounded-pill px-6 py-3 text-sm font-semibold transition-all duration-200 active:scale-[0.98]";
+  "inline-flex min-h-[44px] items-center justify-center rounded-pill px-6 py-3 text-sm font-semibold transition-all duration-200 active:scale-[0.98]";
 
 const variantStyles = {
   /** Solid lime with a soft glow — pure black text for WCAG AAA contrast */

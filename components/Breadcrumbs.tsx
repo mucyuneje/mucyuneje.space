@@ -26,12 +26,12 @@ export function Breadcrumbs() {
   const label = routeLabels[segment] ?? segment;
 
   return (
-    <nav aria-label="Breadcrumb" className="px-6 pt-28 pb-2 md:px-12 lg:pr-20">
+    <nav aria-label="Breadcrumb" className="px-6 pt-10 pb-2 md:px-12 lg:pr-20">
       <ol className="flex items-center gap-2 text-sm text-muted">
         <li>
           <Link
             href="/"
-            className="transition-colors duration-200 hover:text-primary"
+            className="inline-flex min-h-[44px] items-center px-3 transition-colors duration-200 hover:text-primary"
           >
             Home
           </Link>

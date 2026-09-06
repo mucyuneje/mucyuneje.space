@@ -10,12 +10,17 @@ import { Moon, Sun } from "lucide-react";
  */
 export function ThemeToggle() {
   const toggle = () => {
-    const isLight = document.documentElement.classList.toggle("light");
+    const root = document.documentElement;
+    // Transient class enables the smooth color crossfade in globals.css;
+    // removed after the transition so hover/motion transitions stay snappy.
+    root.classList.add("theme-transition");
+    const isLight = root.classList.toggle("light");
     try {
       window.localStorage.setItem("theme", isLight ? "light" : "dark");
     } catch {
       /* storage unavailable — theme simply won't persist */
     }
+    window.setTimeout(() => root.classList.remove("theme-transition"), 300);
   };
 
   return (
@@ -23,7 +28,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="Toggle color theme"
-      className="flex size-10 items-center justify-center rounded-full text-primary transition-colors duration-200 hover:text-accent"
+      className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full text-primary transition-colors duration-200 hover:text-accent"
     >
       {/* Sun shows in dark mode, Moon in light mode */}
       <Sun aria-hidden="true" className="size-5 [html.light_&]:hidden" />

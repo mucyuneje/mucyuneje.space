@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 
+import { Tag } from "@/components/Tag";
 import type { Achievement } from "@/lib/achievements";
 import { categoryIcons } from "@/components/achievements/category-icons";
 
@@ -32,7 +33,7 @@ export function CertificateCard({
               <button
                 type="button"
                 onClick={() => onPreview?.(achievement)}
-                className="text-left underline-offset-4 hover:underline"
+                className="inline-flex min-h-[44px] items-center -ml-1 pl-1 pr-1 text-left underline-offset-4 hover:underline"
               >
                 {achievement.title}
               </button>
@@ -53,11 +54,8 @@ export function CertificateCard({
           {[achievement.result, ...(achievement.skills ?? [])]
             .filter(Boolean)
             .map((tag) => (
-              <li
-                key={tag}
-                className="rounded-pill bg-bg-secondary px-2.5 py-1 text-[0.6875rem] font-medium text-muted"
-              >
-                {tag}
+              <li key={tag}>
+                <Tag>{tag}</Tag>
               </li>
             ))}
         </ul>
@@ -68,7 +66,7 @@ export function CertificateCard({
           href={achievement.credentialUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-auto inline-flex items-center gap-1 pt-4 text-xs font-semibold text-primary/80 transition-colors hover:text-accent"
+          className="mt-auto inline-flex min-h-[44px] items-center gap-1 pt-4 text-xs font-semibold text-primary/80 transition-colors hover:text-accent"
         >
           View Credential
           <ArrowUpRight aria-hidden="true" className="size-3.5" />

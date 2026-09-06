@@ -4,6 +4,7 @@ import { SiGithub, SiInstagram } from "react-icons/si";
 import { FadeUp } from "@/components/FadeUp";
 import { PillButton } from "@/components/PillButton";
 import { StatusBadge } from "@/components/StatusBadge";
+import { contactEmailHref, contactEmailSubject } from "@/lib/site";
 
 type HeroProps = {
   /** Availability pill shown above the headline */
@@ -37,13 +38,13 @@ export function Hero({
 }: HeroProps) {
   /* Subtle background pills — quiet by default, lift on hover */
   const socialLinkClass =
-    "inline-flex items-center gap-2 rounded-full bg-card px-3.5 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:text-primary";
+    "inline-flex min-h-[44px] items-center gap-2 rounded-full bg-card px-3.5 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:text-primary";
   const socials = [
     { label: "GitHub", href: githubUrl, Icon: SiGithub },
     { label: "Instagram", href: instagramUrl, Icon: SiInstagram },
     {
       label: "Email",
-      href: email ? `mailto:${email}` : "",
+      href: email ? `mailto:${email}?subject=${encodeURIComponent(contactEmailSubject)}` : "",
       Icon: Mail,
     },
   ].filter((s) => s.href);
@@ -75,10 +76,7 @@ export function Hero({
       {/* Primary CTA pair — visitors never have to scroll or guess */}
       <FadeUp delay={0.2}>
         <div className="flex flex-wrap items-center gap-3">
-          <PillButton
-            variant="primary"
-            href={email ? `mailto:${email}` : "/contact"}
-          >
+          <PillButton variant="primary" href={email ? contactEmailHref : "/contact"}>
             Get in Touch
           </PillButton>
           <PillButton variant="secondary" href="/projects">

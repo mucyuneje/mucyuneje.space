@@ -26,7 +26,13 @@ export function Sidebar({ items }: SidebarProps) {
           cleanly opposite the avatar instead of floating over the image */}
       <div className="flex items-start justify-between gap-4">
         <Link href="/" className="block">
-          <Avatar src={profile.avatar} alt="" size={152} priority className="size-[4.75rem]" />
+          <Avatar
+            src={profile.avatar}
+            alt={profile.avatarAlt}
+            size={152}
+            priority
+            className="size-[5.5rem]"
+          />
           <span className="mt-6 block font-heading text-[1.4375rem] font-bold leading-tight tracking-tight text-primary">
             Mucyuneje Hirwa Arsene
           </span>

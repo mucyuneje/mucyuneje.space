@@ -27,7 +27,7 @@ export default function AboutPage() {
     <>
       {breadcrumb && <JsonLd data={breadcrumb} />}
       <Breadcrumbs />
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-16 md:px-12 md:py-24 lg:pr-20">
         <FadeUp>
           <SectionHeading large>About</SectionHeading>
         </FadeUp>
@@ -77,7 +77,7 @@ export default function AboutPage() {
       </section>
 
       {/* Tools / stack */}
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-16 md:px-12 md:py-24 lg:pr-20">
         <FadeUp>
           <SectionHeading large>Tools I Build With</SectionHeading>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">

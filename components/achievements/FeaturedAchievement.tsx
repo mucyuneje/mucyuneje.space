@@ -1,5 +1,6 @@
 import { ArrowUpRight, Trophy } from "lucide-react";
 
+import { Tag } from "@/components/Tag";
 import type { Achievement } from "@/lib/achievements";
 
 type FeaturedAchievementProps = {
@@ -37,11 +38,8 @@ export function FeaturedAchievement({ achievement }: FeaturedAchievementProps) {
           {achievement.skills?.length ? (
             <ul className="flex flex-wrap gap-1.5">
               {achievement.skills.map((skill) => (
-                <li
-                  key={skill}
-                  className="rounded-pill bg-bg-secondary px-2.5 py-1 text-[0.6875rem] font-medium text-muted"
-                >
-                  {skill}
+                <li key={skill}>
+                  <Tag>{skill}</Tag>
                 </li>
               ))}
             </ul>
@@ -51,7 +49,7 @@ export function FeaturedAchievement({ achievement }: FeaturedAchievementProps) {
               href={achievement.credentialUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-primary/80 transition-colors hover:text-accent"
+              className="inline-flex min-h-[44px] items-center gap-1 text-xs font-semibold text-primary/80 transition-colors hover:text-accent"
             >
               View Achievement
               <ArrowUpRight aria-hidden="true" className="size-3.5" />

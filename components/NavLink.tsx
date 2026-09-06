@@ -20,7 +20,7 @@ export function NavLink({ item, onClick }: NavLinkProps) {
       onClick={onClick}
       aria-current={item.active ? "page" : undefined}
       className={`
-        group flex items-center gap-3 py-1 text-[1.0625rem] transition-colors duration-200
+        group flex items-center gap-3 py-2 text-[1.0625rem] transition-colors duration-200
         ${
           item.active
             ? /* active: bold lime label + solid lime dash */

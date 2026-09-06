@@ -28,7 +28,7 @@ html {
   --bg-secondary: #17171a;
   --accent: #d4ff3d;
   --text-primary: #ffffff;
-  --text-muted: #a1a1aa;
+  --text-muted: #b0b0ba;
   --card-bg: #1a1a1e;
   --card-border: rgba(255, 255, 255, 0.08);
 }
@@ -75,11 +75,39 @@ body {
 html.light {
   --bg: #f7f7f5;
   --bg-secondary: #efefec;
-  --accent: #84cc16;
+  --accent: #a3e635;
   --text-primary: #18181b;
   --text-muted: #55555c;
   --card-bg: #ffffff;
   --card-border: rgba(0, 0, 0, 0.08);
+}
+
+/* Selected text stays readable on the lime accent in light mode too */
+html.light ::selection {
+  color: #1a2e05;
+}
+
+/* Smooth color crossfade while the theme flips. ThemeToggle adds
+ * `.theme-transition` to <html> for ~300ms on toggle; these transitions
+ * target only color-like properties so layout stays stable. */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    fill 0.25s ease,
+    box-shadow 0.25s ease !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.theme-transition,
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition: none !important;
+  }
 }
 
 /* Thin, minimal scrollbar for the independently-scrolling content column */

@@ -34,7 +34,7 @@ export default function AchievementsPage() {
     <>
       {breadcrumb && <JsonLd data={breadcrumb} />}
       <Breadcrumbs />
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-16 md:px-12 md:py-24 lg:pr-20">
         <FadeUp>
           <SectionHeading large>Achievements &amp; Recognition</SectionHeading>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">

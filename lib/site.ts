@@ -5,7 +5,22 @@
  * ------------------------------------------------------------------------- */
 
 import type { LucideIcon } from "lucide-react";
-import { Code2, Handshake, Layers, MapPin } from "lucide-react";
+import {
+  Building2,
+  Bus,
+  Car,
+  Code2,
+  EyeOff,
+  Globe,
+  GraduationCap,
+  Hand,
+  Handshake,
+  Layers,
+  MapPin,
+  Package,
+  ShoppingCart,
+  Sparkles,
+} from "lucide-react";
 
 export const siteConfig = {
   /** Canonical brand/entity name — used in titles, OG tags, footer and
@@ -28,6 +43,14 @@ export const siteConfig = {
   whatsappUrl: "https://wa.me/250784222615",
   instagramUrl: "https://instagram.com/mucyuneje",
 };
+
+/** Prefilled subject for every mailto CTA so the email opens with context. */
+export const contactEmailSubject = "Project inquiry";
+
+/** mailto: href with the subject prefilled — single source for every CTA. */
+export const contactEmailHref = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
+  contactEmailSubject,
+)}`;
 
 /** Targeted industry terms — emitted as meta keywords and reused as
  *  `knowsAbout` in the Person JSON-LD entity. */
@@ -90,8 +113,8 @@ export type Project = {
   title: string;
   /** Concise card summary — kept to ~2 sentences; clamped to 3 lines in UI */
   description: string;
-  /** Wide preview image — swap in real screenshots when available */
-  image: string;
+  /** Brand icon shown in the browser-frame mockup thumbnail */
+  icon: LucideIcon;
   /** Tech names — resolved to icons via lib/tech-icons.ts */
   tech: string[];
   /** Live deployment — rendered as the card's primary "Live Demo" link */
@@ -109,7 +132,7 @@ export const projects: Project[] = [
     title: "Echelon: AI-Powered Talent Screening",
     description:
       "Production-ready recruiter platform using Google Gemini AI to screen, score, and shortlist job applicants from structured talent profiles and uploaded resumes. Built for the Umurava AI Hackathon.",
-    image: "/images/project-echelon.svg",
+    icon: Sparkles,
     tech: ["Next.js", "TypeScript", "Node.js", "MongoDB", "AI", "Tailwind CSS"],
     demoUrl: "https://echelon-theta.vercel.app/",
   },
@@ -117,42 +140,42 @@ export const projects: Project[] = [
     title: "Mubiligi TSS: School Portal",
     description:
       "Full-stack web app for a Catholic Technical Secondary School — public website, online student application portal with MTN MoMo / Airtel Money payments, CMS, and a comprehensive admin dashboard.",
-    image: "/images/project-mubiligi.svg",
+    icon: GraduationCap,
     tech: ["React", "Express", "MongoDB", "Redis", "Docker", "Tailwind CSS"],
   },
   {
     title: "UBWAMI TechHouse: Enterprise SaaS",
     description:
       "Enterprise web application for a tech company — public marketing site with blog, admin dashboard with Kanban project management, lead pipeline, support tickets, and real-time notifications via SSE.",
-    image: "/images/project-ubwami.svg",
+    icon: Building2,
     tech: ["React", "Express", "MongoDB", "Zustand", "SSE", "Tailwind CSS"],
   },
   {
     title: "RebaBus: Real-Time Bus Tracking",
     description:
       "Map-first real-time bus tracking system for Kigali — fullscreen interactive map with live bus markers, ETA predictions, route filtering, and mobile-friendly sliding panels.",
-    image: "/images/project-rebabus.svg",
+    icon: Bus,
     tech: ["React", "Leaflet", "Real-time Systems", "Tailwind CSS"],
   },
   {
     title: "NEXORA: Gesture Control System",
     description:
       "Computer vision system using hand gestures and face tracking to control the mouse cursor, scroll, zoom, and click entirely through the webcam, with a Flask web streaming interface.",
-    image: "/images/project-nexora.svg",
+    icon: Hand,
     tech: ["Python", "OpenCV", "MediaPipe", "Flask"],
   },
   {
     title: "Interview Hider: AI Interview Assistant",
     description:
       "Desktop app that captures system audio during interviews, transcribes it in real-time with local Whisper, and generates AI answers via Groq API. The window is invisible to screenshots and screen recordings.",
-    image: "/images/project-interview.svg",
+    icon: EyeOff,
     tech: ["Python", "AI", "Groq API"],
   },
   {
     title: "mucyuneje.space: Portfolio Website",
     description:
       "Modern personal portfolio built with Next.js — server-side rendered, animated, responsive, with project showcase and optimized performance.",
-    image: "/images/project-portfolio.svg",
+    icon: Globe,
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     demoUrl: "https://mucyuneje.space",
   },
@@ -160,21 +183,21 @@ export const projects: Project[] = [
     title: "Mukedealz: E-Commerce Platform",
     description:
       "Full-stack e-commerce web application with product listings, shopping cart, and a modern UI with TypeScript type safety.",
-    image: "/images/project-mukedealz.svg",
+    icon: ShoppingCart,
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
   },
   {
     title: "Umurenge IT Inventory System",
     description:
       "Centralized web app for managing IT equipment, stock levels, and asset distribution across departments — improving efficiency, transparency and accountability.",
-    image: "/images/project-inventory.svg",
+    icon: Package,
     tech: ["React", "Node.js", "Express", "MongoDB"],
   },
   {
     title: "Alaniiautos: Auto Dealership Platform",
     description:
       "Next.js web application for an automobile dealership featuring vehicle listings and a modern responsive interface.",
-    image: "/images/project-alanii.svg",
+    icon: Car,
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
   },
 ];
@@ -286,12 +309,12 @@ export const finalCta = {
   description:
     "Have a project, business problem, or idea that could become software?",
   cta: "Get in touch ↗",
-  // Direct line — the mailto: link uses the real address from siteConfig.
-  href: `mailto:${siteConfig.email}`,
+  // Direct line — opens the mail client with the subject prefilled.
+  href: contactEmailHref,
 };
 
 export const socials = [
   { label: "GitHub", href: siteConfig.githubUrl },
   { label: "Instagram", href: "https://instagram.com/mucyuneje" },
-  { label: "Email", href: `mailto:${siteConfig.email}` },
+  { label: "Email", href: contactEmailHref },
 ].filter((social) => social.href !== "#");

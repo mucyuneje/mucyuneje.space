@@ -22,12 +22,12 @@ export function Footer() {
           <p className="mt-1 text-xs text-muted">{siteConfig.role}</p>
         </div>
 
-        <ul className="flex items-center gap-6">
+        <ul className="flex flex-wrap items-center gap-x-6 gap-y-1">
           {footerLinks.map((link) => (
             <li key={link.label}>
               <Link
                 href={link.href}
-                className="text-xs uppercase tracking-[0.14em] text-muted transition-colors duration-200 hover:text-primary"
+                className="inline-flex min-h-[44px] items-center px-2 text-xs uppercase tracking-[0.14em] text-muted transition-colors duration-200 hover:text-primary"
               >
                 {link.label}
               </Link>
@@ -35,7 +35,7 @@ export function Footer() {
           ))}
         </ul>
 
-        <ul className="flex items-center gap-6">
+        <ul className="flex flex-wrap items-center gap-x-6 gap-y-1">
           {socials.map((social) => (
             <li key={social.label}>
               <a
@@ -43,7 +43,7 @@ export function Footer() {
                 {...(social.href.startsWith("http")
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="text-xs uppercase tracking-[0.14em] text-muted transition-colors duration-200 hover:text-primary"
+                className="inline-flex min-h-[44px] items-center px-2 text-xs uppercase tracking-[0.14em] text-muted transition-colors duration-200 hover:text-primary"
               >
                 {social.label}
               </a>

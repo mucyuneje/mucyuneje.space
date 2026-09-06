@@ -99,18 +99,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
         {/* Centered application shell — hard 1600px cap so the layout stays
             grounded and never stretches endlessly on ultra-wide monitors.
-            Sidebar participates in flex flow (sticky, not fixed) so the
-            whole shell — identity rail included — centers as one unit. */}
-        <div className="mx-auto flex w-full max-w-[1600px]">
+            Grid on lg+: fixed-width sidebar column + flexible content column
+            with minmax(0,1fr) so long text/code can never push past the
+            content area. The sidebar participates in grid flow (sticky, not
+            fixed) so the whole shell — identity rail included — centers as
+            one unit. Below lg it collapses to a single column. */}
+        <div className="mx-auto grid w-full min-h-dvh max-w-[1600px] grid-cols-1 lg:grid-cols-[17.5rem_minmax(0,1fr)] lg:gap-8">
           {/* Full-height identity + nav sidebar (desktop); drawer below lg */}
           <Sidebar items={navItems} />
 
           {/* Top bar (below lg only — the sidebar carries identity and the
-              theme toggle on desktop): name left, theme + menu right */}
-          <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between gap-2 px-6 py-5 lg:hidden">
+              theme toggle on desktop): name left, theme + menu right.
+              Sticky + in-flow so it reserves space (no content overlap) and
+              an opaque background so scrolled content never shows through. */}
+          <header className="sticky top-0 z-40 flex w-full items-center justify-between gap-2 border-b border-card-border bg-bg px-6 py-4 lg:hidden">
             <Link
               href="/"
-              className="font-heading text-[0.9375rem] font-bold tracking-tight text-primary transition-colors hover:text-accent"
+              className="inline-flex min-h-[44px] items-center font-heading text-[0.9375rem] font-bold tracking-tight text-primary transition-colors hover:text-accent"
             >
               {heroContent.identity}
             </Link>
@@ -121,10 +126,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </header>
 
           {/* Content column: independent scroll container on lg+, with a thin
-              custom scrollbar; smooth-scrolls to section anchors */}
+              custom scrollbar; smooth-scrolls to section anchors. min-w-0
+              (via minmax(0,1fr)) prevents text/code from overflowing the
+              column and overlapping the sidebar. */}
           <div
             id="content-scroll"
-            className="thin-scrollbar min-w-0 flex-1 scroll-smooth lg:h-dvh lg:overflow-y-auto"
+            className="thin-scrollbar min-w-0 scroll-smooth lg:h-dvh lg:overflow-y-auto"
           >
             <main className="relative">{children}</main>
             <Footer />

@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { FadeUp } from "@/components/FadeUp";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Tag } from "@/components/Tag";
 import type { ExperienceEntry } from "@/lib/site";
 
 type ExperienceTimelineProps = {
@@ -33,15 +34,16 @@ export function ExperienceTimeline({ entries, leadership }: ExperienceTimelinePr
       {entries.map((entry, i) => (
         <div key={entry.org} className="relative pb-14 last:pb-0">
           {/* Timeline node — the company logo itself sits on the axis
-              (initials fallback when no logo file exists) */}
+              (initials fallback when no logo file exists). object-contain +
+              padding so wordmarks and circular seals render uniformly. */}
           <span className="absolute -left-[calc(2rem+23px)] top-3 flex size-12 items-center justify-center overflow-hidden rounded-full border border-card-border bg-bg">
             {entry.logo ? (
               <Image
                 src={entry.logo}
-                alt=""
+                alt={`${entry.org} logo`}
                 width={48}
                 height={48}
-                className="size-full object-cover"
+                className="size-full object-contain p-1.5"
               />
             ) : (
               <span
@@ -63,11 +65,10 @@ export function ExperienceTimeline({ entries, leadership }: ExperienceTimelinePr
             {entry.tags && entry.tags.length > 0 && (
               <ul className="mt-3 flex flex-wrap gap-2" aria-label="Tags">
                 {entry.tags.map((tag) => (
-                  <li
-                    key={tag}
-                    className="rounded-pill bg-card px-3 py-1 text-[0.6875rem] font-semibold uppercase tracking-wide text-accent"
-                  >
-                    {tag}
+                  <li key={tag}>
+                    <Tag variant="accent" className="font-semibold uppercase">
+                      {tag}
+                    </Tag>
                   </li>
                 ))}
               </ul>
@@ -112,10 +113,10 @@ export function ExperienceTimeline({ entries, leadership }: ExperienceTimelinePr
                       {entry.logo ? (
                         <Image
                           src={entry.logo}
-                          alt=""
+                          alt={`${entry.org} logo`}
                           width={36}
                           height={36}
-                          className="size-full object-cover"
+                          className="size-full object-contain p-1"
                         />
                       ) : (
                         <span
@@ -140,11 +141,10 @@ export function ExperienceTimeline({ entries, leadership }: ExperienceTimelinePr
                           aria-label="Tags"
                         >
                           {entry.tags.map((tag) => (
-                            <li
-                              key={tag}
-                              className="rounded-pill bg-card px-2.5 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wide text-accent"
-                            >
-                              {tag}
+                            <li key={tag}>
+                              <Tag variant="accent" className="font-semibold uppercase">
+                                {tag}
+                              </Tag>
                             </li>
                           ))}
                         </ul>

@@ -52,6 +52,12 @@ const quickLinks = [
     href: "/contact",
     description: "Get in touch for projects or collaboration.",
   },
+  {
+    label: "GitHub",
+    href: siteConfig.githubUrl,
+    description: "Explore my projects and open-source experiments.",
+    external: true,
+  },
 ];
 
 export default function HomePage() {
@@ -60,7 +66,7 @@ export default function HomePage() {
       {/* Intro / hero — the page's single <h1> lives inside */}
       <section
         id="intro"
-        className="scroll-mt-24 px-6 pb-24 pt-28 md:px-12 md:pb-16 md:pt-[16vh] lg:pr-20"
+        className="scroll-mt-24 px-6 pb-16 pt-10 md:px-12 md:pb-24 md:pt-[8vh] lg:pr-20 lg:pt-[16vh]"
       >
         <Hero
           statusText="Available for projects"
@@ -95,7 +101,7 @@ export default function HomePage() {
       </div>
 
       {/* Selected work — curated 3-project preview */}
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-16 md:px-12 md:py-24 lg:pr-20">
         <FadeUp>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -107,7 +113,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/projects"
-              className="group inline-flex items-center gap-2 pb-1 text-sm font-medium text-primary/80 transition-colors duration-200 hover:text-accent"
+              className="group inline-flex min-h-[44px] items-center gap-2 pb-1 pt-2 text-sm font-medium text-primary/80 transition-colors duration-200 hover:text-accent"
             >
               View all projects
               <ArrowRight
@@ -123,11 +129,12 @@ export default function HomePage() {
               <ProjectCard
                 title={project.title}
                 description={project.description}
-                image={project.image}
+                icon={project.icon}
                 tech={project.tech}
                 demoUrl={project.demoUrl}
                 sourceUrl={project.sourceUrl}
                 gallery={project.gallery ?? []}
+                index={i}
               />
             </FadeUp>
           ))}
@@ -135,7 +142,7 @@ export default function HomePage() {
       </section>
 
       {/* Quick links to sub-pages */}
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-16 md:px-12 md:py-24 lg:pr-20">
         <FadeUp>
           <SectionHeading large>Explore</SectionHeading>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
@@ -145,31 +152,54 @@ export default function HomePage() {
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {quickLinks.map((link, i) => (
             <FadeUp key={link.href} delay={0.08 + i * 0.06}>
-              <Link
-                href={link.href}
-                className="group flex flex-col rounded-card border border-card-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-[0_0_40px_-12px_color-mix(in_srgb,var(--accent)_30%,transparent)]"
-              >
-                <h3 className="font-heading text-lg font-semibold text-primary group-hover:text-accent">
-                  {link.label}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
-                  {link.description}
-                </p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                  View
-                  <ArrowRight
-                    aria-hidden="true"
-                    className="size-3.5 transition-transform duration-200 group-hover:translate-x-1"
-                  />
-                </span>
-              </Link>
+              {link.external ? (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col rounded-card border border-card-border bg-card p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-[0_0_40px_-12px_color-mix(in_srgb,var(--accent)_30%,transparent)] active:translate-y-0 active:scale-[0.995]"
+                >
+                  <h3 className="font-heading text-lg font-semibold text-primary group-hover:text-accent">
+                    {link.label}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {link.description}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    Visit
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="size-3.5 transition-transform duration-200 group-hover:translate-x-1"
+                    />
+                  </span>
+                </a>
+              ) : (
+                <Link
+                  href={link.href}
+                  className="group flex flex-col rounded-card border border-card-border bg-card p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-[0_0_40px_-12px_color-mix(in_srgb,var(--accent)_30%,transparent)] active:translate-y-0 active:scale-[0.995]"
+                >
+                  <h3 className="font-heading text-lg font-semibold text-primary group-hover:text-accent">
+                    {link.label}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {link.description}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    View
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="size-3.5 transition-transform duration-200 group-hover:translate-x-1"
+                    />
+                  </span>
+                </Link>
+              )}
             </FadeUp>
           ))}
         </div>
       </section>
 
       {/* GitHub */}
-      <section aria-label="GitHub" className="px-6 pb-24 md:px-12 lg:pr-20">
+      <section aria-label="GitHub" className="px-6 py-16 md:px-12 md:py-24 lg:pr-20">
         <FadeUp>
           <div className="rounded-card border border-card-border bg-card p-8 md:p-14">
             <h2 className="max-w-[35rem] font-heading text-3xl font-medium leading-tight text-primary md:text-4xl">
@@ -190,7 +220,7 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA / contact */}
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-16 md:px-12 md:py-24 lg:pr-20">
         <FadeUp>
           <h2 className="font-heading text-[2rem] font-medium uppercase leading-[1.05] text-primary md:text-[3.5rem]">
             {finalCta.headingLines[0]}
@@ -229,7 +259,7 @@ export default function HomePage() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-card-border bg-card px-3.5 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:text-primary"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-card-border bg-card px-3.5 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:text-primary"
                 >
                   <Icon aria-hidden="true" className="size-4" />
                   {label}

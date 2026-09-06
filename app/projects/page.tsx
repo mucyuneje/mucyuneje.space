@@ -28,7 +28,7 @@ export default function ProjectsPage() {
     <>
       {breadcrumb && <JsonLd data={breadcrumb} />}
       <Breadcrumbs />
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-16 md:px-12 md:py-24 lg:pr-20">
         <FadeUp>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -42,7 +42,7 @@ export default function ProjectsPage() {
               href={siteConfig.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 pb-1 text-sm font-medium text-primary/80 transition-colors duration-200 hover:text-accent"
+              className="group inline-flex min-h-[44px] items-center gap-2 pb-1 pt-2 text-sm font-medium text-primary/80 transition-colors duration-200 hover:text-accent"
             >
               View more on GitHub
               <span aria-hidden="true" className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-1">
@@ -58,11 +58,12 @@ export default function ProjectsPage() {
               <ProjectCard
                 title={project.title}
                 description={project.description}
-                image={project.image}
+                icon={project.icon}
                 tech={project.tech}
                 demoUrl={project.demoUrl}
                 sourceUrl={project.sourceUrl}
                 gallery={project.gallery ?? []}
+                index={i}
               />
             </FadeUp>
           ))}
