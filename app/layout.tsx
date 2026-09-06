@@ -44,6 +44,13 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   category: "Technology",
+  // Explicit favicon declaration — /favicon.ico serves Google's crawler
+  // fallback; /icon + /apple-icon are the modern routes from the
+  // app/icon.tsx + apple-icon.tsx File Conventions.
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon",
+  },
   // Self-referencing canonical — keeps / as the single indexable URL
   alternates: {
     canonical: "/",
